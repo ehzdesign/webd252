@@ -8,5 +8,4 @@
   <link rel="stylesheet" href=" <?php echo get_stylesheet_uri(); ?>">
 </head>
 <body>
-</header>
-  
+
