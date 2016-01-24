@@ -421,7 +421,7 @@ ul{
   color: rgba(0,0,0,0.4);
 }
 
-.c-featured-image--home .wp-post-image{
+.c-featured-image .wp-post-image{
   max-width: 100%;
   height: auto;
 }
@@ -438,4 +438,21 @@ ul{
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-bottom: 1.5em;
+}
+
+
+/**
+ *
+ * single page style
+ *
+ */
+
+
+.c-banner-image{
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
 }

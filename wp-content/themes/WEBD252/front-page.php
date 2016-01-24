@@ -133,6 +133,7 @@
 
               <span class="post-meta__author"><?php the_author(); ?></span>
 
+
               <br>
 
               <span class="post-meta__date"><?php the_time('F j, Y'); ?></span>
@@ -151,7 +152,7 @@
 
              <?php if(has_post_thumbnail()) : //get featured image for post?>
 
-              <div class="c-featured-image--home">
+              <div class="c-featured-image">
 
                 <?php the_post_thumbnail( 'large', $attr ); //get large size of featured image?>
 
@@ -164,9 +165,11 @@
               <?php the_title(); ?>
 
             </h2>
+            <p class="content">
 
+            <?php echo $trimmed_content; ?>
 
-            <p class="content"><?php echo $trimmed_content; ?></p>
+            </p>
 
           </a>
 
@@ -206,15 +209,15 @@
 
       <?php endif; ?>
 
-          <?php edit_post_link('edit post','<small>', '</small>'); ?>
+      <?php edit_post_link('edit post','<small>', '</small>'); ?>
 
     </div>
 
 
-
-
     <?php endwhile;?>
+
     <?php endif;?>
+
   </div>
 
 
