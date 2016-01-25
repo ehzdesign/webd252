@@ -3,37 +3,66 @@
 
   <div class="l-page-wrapper">
 
-   <main class="main-content main-content--single">
+    <?php if ( has_post_thumbnail() ) : ?>
 
-   <?php
+    <?php
+
+
     //get url for featured image
      $banner_image = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full');
      $banner_url = $banner_image['0'];
    ?>
 
-    <div class="c-banner-image" style="background-image: url(<?php echo $banner_url; ?>)"><div class="o-video-overlay"></div></div>
+    <div class="c-banner-image" style="background-image: url(<?php echo $banner_url; ?>)">
+
+    <div class="o-overlay o-overlay--single"></div>
+
+    <?php else:
+
+      $result = get_the_category();
+
+      $post_category = $result[0]->category_nicename;
+
+     ?>
+
+    <div class="c-banner-image" style="background-image: url(<?php echo get_template_directory_uri() . '/images/category/'. $post_category .'.jpeg'; ?>)">
+
+    <div class="o-overlay o-overlay--single"></div>
 
 
-    <section class="l-main-content__wrapper">
+
+  <?php endif; ?>
+
+
+    </div>
+
+   <main class="main-content main-content--single">
+
+    <section class="l-main-content__wrapper l-main-content__wrapper--single">
 
 
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
        <div class="post">
 
-        <h1><?php the_title(); ?></h1>
+        <h1 class="u-capitalize"><?php the_title(); ?></h1>
 
          <p class="content"><?php the_content(); ?></p>
 
+      <?php previous_post_link(); ?>
+
+    <?php next_post_link(); ?>
+
+     <div class="comment list">
+    <?php wp_list_comments( array( 'style' => 'div' ) ); ?>
+    </div>
 
       <?php endwhile;?>
     <?php endif;?>
    </section>
-    <?php previous_post_link(); ?>
+      <?php get_sidebar(); ?>
 
-    <?php next_post_link(); ?>
     </main>
-    <aside></aside>
     </div>
 
    <?php get_footer(); ?>

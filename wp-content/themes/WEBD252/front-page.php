@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="l-page-wrapper l-clearfix">
+<div class="l-page-wrapper u-clearfix">
 
   <section class="l-intro-section--homepage">
 
@@ -59,7 +59,7 @@
 
     <div class="l-video-container--homepage">
 
-      <div class="o-video-overlay"></div>
+      <div class="o-overlay"></div>
 
       <video autoplay loop class="c-video--homepage u-flipY">
 
@@ -101,7 +101,7 @@
 
               //Pagination Parameters
             'nopaging'               => false,
-            'posts_per_page'         => 5
+            // 'posts_per_page'         => 5
               // 'paged'                  => get_query_var('paged'),
 
             );
@@ -127,7 +127,7 @@
 
 
 
-            <div class="c-post .l-clearfix">
+            <div class="c-post .u-clearfix">
 
              <div class="post-meta">
 
@@ -209,7 +209,7 @@
 
       <?php endif; ?>
 
-      <?php edit_post_link('edit post','<small>', '</small>'); ?>
+      <?php edit_post_link('Edit post','<small class="post-edit-link__container">', '</small>'); ?>
 
     </div>
 
