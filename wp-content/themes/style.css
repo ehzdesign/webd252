@@ -1,0 +1,104 @@
+
+body{
+  background: linear-gradient(214deg, #7be8d6, #a481dd, #dd81cd);
+  background-size: 600% 600%;
+  -webkit-animation: bgMove 60s ease infinite;
+  animation: bgMove 60s ease infinite;
+}
+
+
+
+@-webkit-keyframes bgMove {
+    0%{background-position:91% 0%}
+    50%{background-position:10% 100%}
+    100%{background-position:91% 0%}
+}
+@keyframes bgMove { 
+    0%{background-position:91% 0%}
+    50%{background-position:10% 100%}
+    100%{background-position:91% 0%}
+}
+
+
+
+#site-container{
+  display: flex;
+  height: 100vh;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#site-container, 
+.btn{
+  font-family: 'Fredoka One', "Helvetica Neue", Helvetica, sans-serif;
+}
+
+
+#info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 400px;
+    padding: 2em 3em;
+    border-radius: 40px;
+    text-align: center;
+    background-color: rgba(4, 4, 4, 0.11);
+    color: #fff;
+    letter-spacing: 4px;
+    font-size: 1.3em;
+    background: linear-gradient(45deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.05) 100%);
+}
+#info > h1{
+  text-transform: uppercase;
+}
+
+#score,
+#level{
+  margin-top: 1em;
+}
+
+#profileImg {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background-image: url('images/snakeIcon.jpg');
+  background-position: center;
+  background-size: contain;
+  margin: auto;
+}
+
+.btn{
+    padding: .8em 2em;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    // text-transform: uppercase;
+    font-size: 1em;
+    margin-top: 2em;
+    letter-spacing: 2px;
+    max-width: 15em;
+    cursor: pointer;
+}
+
+.btn--paused{
+    background-color: #D65959;
+}
+
+.btn--play{
+    background-color: #59D692; 
+}
+
+.btn--logout{
+  background-color: #599BD6;
+  font-size: 0.7em;
+  visibility: hidden;
+  margin-bottom: 1.5em;
+}
+
+#status{
+  order: -1;
+  margin-bottom: 2em;
+  font-size: 1.2em;
+}

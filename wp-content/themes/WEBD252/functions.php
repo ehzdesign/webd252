@@ -13,7 +13,13 @@ function webd252_theme_styles() {
 
 }
 
-add_action( 'wp_enqueue_scripts', 'webd252_theme_styles' );
+function webd252_theme_scripts() {
+    wp_register_script( 'headerScroll', get_stylesheet_directory_uri() . '/js/headerScroll.js', array('jquery'),'', true);
+    wp_enqueue_script( 'headerScroll' );
+}
+
+add_action( 'wp_enqueue_scripts', 'webd252_theme_styles');
+add_action( 'wp_enqueue_scripts', 'webd252_theme_scripts');
 
     // Register Sidebars
 function custom_sidebar() {
@@ -45,4 +51,14 @@ function set_tag_cloud_sizes($args) {
 
 add_filter('widget_tag_cloud_args','set_tag_cloud_sizes');
 
-?>
+
+
+
+  // register_nav_menu('drawer-menu',__( 'Drawer Menu' ));
+  register_nav_menu('drawer-menu', 'Drawer Menu' );
+  register_nav_menu('header-menu', 'Header Menu' );
+
+
+
+
+ ?>

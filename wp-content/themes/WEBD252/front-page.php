@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
+<input type="checkbox" id="drawer-menu-checkbox" class="u-no-display">
+
 <div class="l-page-wrapper u-clearfix">
 
   <section class="l-intro-section--homepage">
@@ -118,7 +120,7 @@
 
             <?php
               //reduce post length to 60 words when appearing on home-page
-            $read_more = '<small><a href="' . get_the_permalink() . '" class="read-more-link--small">Read more...</a></small>';
+            $read_more = '<small><a href="' . get_the_permalink() . '" class="read-more-link--small">Continue Reading</a></small>';
 
             $trimmed_content = wp_trim_words( get_the_content(), 40, ' ...' );
 
@@ -129,24 +131,7 @@
 
             <div class="c-post .u-clearfix">
 
-             <div class="post-meta">
-
-              <span class="post-meta__author"><?php the_author(); ?></span>
-
-
-              <br>
-
-              <span class="post-meta__date"><?php the_time('F j, Y'); ?></span>
-
-              <span class="post-meta__time"> ~ <?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></span>
-
-              <br>
-
-              <span class="comment-count"><?php comments_number( 'no comments', '1 comment', '% comments' ); ?></span>
-
-              <?php the_tags( '<ul class="post-meta__tags"><li class="post-meta__tags__item">', '</li><li class="post-meta__tags__item">', '</li></ul>' ); ?>
-
-            </div>
+            <?php get_template_part('post', 'meta') ?>
 
             <a href=" <?php the_permalink(); //get link for post?> " class="l-post-link-wrapper">
 
@@ -178,36 +163,8 @@
 
 
 
-          <?php
-          $due_date = get_post_meta( get_the_ID(), 'Due Date', true );
-                  // Check if the custom field has a value.
-          if ( ! empty( $due_date ) ):  ?>
-
-          <br>
-          <div class="l-custom-meta-container">
-            <span class="due-date meta-pill">
-
-             Due date: <?php echo $due_date; ?>
-
-           </span>
-
-         <?php endif; ?>
-
-         <?php
-         $overall_mark = get_post_meta( get_the_ID(), 'Overall Mark', true );
-                  // Check if the custom field has a value.
-         if ( ! empty( $overall_mark ) ):  ?>
-
-
-         <span class="overall-mark meta-pill">
-
-           Overall Mark: <?php echo $overall_mark; ?>
-
-         </span>
-
-       </div>
-
-      <?php endif; ?>
+        <!-- display custom post due date and overall mark for assignments -->
+          <?php get_template_part( 'assignment', 'attrs' ); ?>
 
       <?php edit_post_link('Edit post','<small class="post-edit-link__container">', '</small>'); ?>
 
@@ -228,5 +185,7 @@
 
 
 </div>
+
+<?php get_template_part( 'drawer', 'menu' ); ?>
 
 <?php get_footer(); ?>
