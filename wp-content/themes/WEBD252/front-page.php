@@ -1,4 +1,7 @@
-<?php get_header(); ?>
+ <?php get_header(); // get the header ?>
+
+
+<!-- controller for side drawer menu - checkbox css trick -->
 
 <input type="checkbox" id="drawer-menu-checkbox" class="u-no-display">
 
@@ -17,6 +20,7 @@
         <?php bloginfo('description') // get site tagline ?>
 
       </p>
+
       <div class="l-instructor-container">
 
         <div class="l-instructor-name-social-container">
@@ -53,7 +57,8 @@
 
         </div>
 
-        <div class="instructor__image"></div>
+        <div class="instructor__image" style= "background-image: url(<?php echo get_template_directory_uri() . '/images/profile.jpg'?>)"></div>
+
 
       </div>
 
@@ -84,7 +89,7 @@
           $args = array(
 
               //Category Parameters
-            'category_name'    => 'Assignments',
+            // 'category_name'    => 'Assignments',
 
 
               //Type & Status Parameters
@@ -119,7 +124,7 @@
 
 
             <?php
-              //reduce post length to 60 words when appearing on home-page
+              //reduce post length to 40 words when appearing on home-page and add a Continue reading at end of each post
             $read_more = '<small><a href="' . get_the_permalink() . '" class="read-more-link--small">Continue Reading</a></small>';
 
             $trimmed_content = wp_trim_words( get_the_content(), 40, ' ...' );
@@ -131,15 +136,15 @@
 
             <div class="c-post .u-clearfix">
 
-            <?php get_template_part('post', 'meta') ?>
+            <?php get_template_part('post', 'meta') //display the meta for each post (date, time, author etc. )?>
 
-            <a href=" <?php the_permalink(); //get link for post?> " class="l-post-link-wrapper">
+            <a href=" <?php the_permalink(); //display link for post?> " class="l-post-link-wrapper">
 
-             <?php if(has_post_thumbnail()) : //get featured image for post?>
+             <?php if(has_post_thumbnail()) : //display featured image for post?>
 
               <div class="c-featured-image">
 
-                <?php the_post_thumbnail( 'large', $attr ); //get large size of featured image?>
+                <?php the_post_thumbnail( 'large', $attr ); //display large size of featured image?>
 
               </div>
 
@@ -147,7 +152,7 @@
 
             <h2 class="c-post__title">
 
-              <?php the_title(); ?>
+              <?php the_title(); // display title of post?>
 
             </h2>
             <p class="content">
@@ -163,10 +168,10 @@
 
 
 
-        <!-- display custom post due date and overall mark for assignments -->
-          <?php get_template_part( 'assignment', 'attrs' ); ?>
 
-      <?php edit_post_link('Edit post','<small class="post-edit-link__container">', '</small>'); ?>
+          <?php get_template_part( 'assignment', 'attrs' ); // display custom post due date and overall mark for assignments?>
+
+      <?php edit_post_link('Edit post','<small class="post-edit-link__container">', '</small>'); //display edit post link?>
 
     </div>
 
@@ -186,6 +191,6 @@
 
 </div>
 
-<?php get_template_part( 'drawer', 'menu' ); ?>
+<?php get_template_part( 'drawer', 'menu' ); //display drawer menu?>
 
 <?php get_footer(); ?>

@@ -1,28 +1,196 @@
-  <?php get_header(); ?>
+ <?php get_header(); // get the header ?>
 
-  <h1><?php bloginfo('name'); ?></h1>
 
-  <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<!-- controller for side drawer menu - checkbox css trick -->
 
-    <div class="post">
-      <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-      <p class="content"><?php the_content(); ?></p>
-    <div class="meta">
+<input type="checkbox" id="drawer-menu-checkbox" class="u-no-display">
 
-      <?php the_author(); ?>
+<div class="l-page-wrapper u-clearfix">
 
-      <?php the_date(); ?>
+  <section class="l-intro-section--homepage">
 
-      <?php the_time(); ?>
+    <div class="l-intro-content">
+      <h1 class="site-title">
+
+        <?php bloginfo('name'); //get site title ?>
+
+      </h1>
+      <p class="tagline">
+
+        <?php bloginfo('description') // get site tagline ?>
+
+      </p>
+
+      <div class="l-instructor-container">
+
+        <div class="l-instructor-name-social-container">
+
+          <div class="instructor__name">Instructor: Chris Maissan</div>
+
+          <div class="instructor__social">
+
+            <ul>
+
+              <li class="instructor__social__item">
+
+                <a href="https://twitter.com/chrismaissan" target="_blank">
+
+                  <i class="fa fa-twitter"></i>
+
+                </a>
+
+              </li>
+
+              <li class="instructor__social__item">
+
+                <a href="mailto:chris@maissan.com?Subject=WEBD252%20Student%20Question" target="_top">
+
+                  <i class="fa fa-envelope"></i>
+
+                </a>
+
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+        <div class="instructor__image" style= "background-image: url(<?php echo get_template_directory_uri() . '/images/profile.jpg'?>)"></div>
+
+
+      </div>
 
     </div>
+
+    <div class="l-video-container--homepage">
+
+      <div class="o-overlay"></div>
+
+      <video autoplay loop class="c-video--homepage u-flipY">
+
+        <source src="<?php echo get_template_directory_uri() . '/video/Goat/MP4/Go-Goat.mp4'; ?>" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+
+          <source src="<?php echo get_template_directory_uri() . '/video/Goat/WEBM/Go-Goat.webm'; ?>" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+
+      </video>
+
+     </div>
+
+  </section>
+
+  <main class="main-content main-content--home">
+
+    <div class="l-main-content__wrapper">
+
+          <?php
+
+          $args = array(
+
+              //Category Parameters
+            // 'category_name'    => 'Assignments',
+
+
+              //Type & Status Parameters
+            'post_type'   => 'post',
+
+            'post_status' => array(
+              'publish'
+              ),
+
+
+              //Order & Orderby Parameters
+            'order'               => 'DESC',
+            'orderby'             => 'date',
+
+
+
+              //Pagination Parameters
+            'nopaging'               => false,
+            // 'posts_per_page'         => 5
+              // 'paged'                  => get_query_var('paged'),
+
+            );
+
+
+
+          $query = new WP_Query( $args );
+
+          ?>
+
+
+          <?php if ( $query -> have_posts() ) : while ( $query -> have_posts() ) : $query -> the_post(); ?>
+
+
+            <?php
+              //reduce post length to 40 words when appearing on home-page and add a Continue reading at end of each post
+            $read_more = '<small><a href="' . get_the_permalink() . '" class="read-more-link--small">Continue Reading</a></small>';
+
+            $trimmed_content = wp_trim_words( get_the_content(), 40, ' ...' );
+
+            ?>
+
+
+
+
+            <div class="c-post .u-clearfix">
+
+            <?php get_template_part('post', 'meta') //display the meta for each post (date, time, author etc. )?>
+
+            <a href=" <?php the_permalink(); //display link for post?> " class="l-post-link-wrapper">
+
+             <?php if(has_post_thumbnail()) : //display featured image for post?>
+
+              <div class="c-featured-image">
+
+                <?php the_post_thumbnail( 'large', $attr ); //display large size of featured image?>
+
+              </div>
+
+              <?php endif; ?>
+
+            <h2 class="c-post__title">
+
+              <?php the_title(); // display title of post?>
+
+            </h2>
+            <p class="content">
+
+            <?php echo $trimmed_content; ?>
+
+            </p>
+
+          </a>
+
+
+          <?php echo $read_more ?>
+
+
+
+
+          <?php get_template_part( 'assignment', 'attrs' ); // display custom post due date and overall mark for assignments?>
+
+      <?php edit_post_link('Edit post','<small class="post-edit-link__container">', '</small>'); //display edit post link?>
+
     </div>
 
-   <?php endwhile;?>
-   <?php endif;?>
 
-   <?php previous_post_link(); ?>
+    <?php endwhile;?>
 
-   <?php next_post_link(); ?>
+    <?php endif;?>
+
+  </div>
+
+
+
+  <?php wp_reset_postdata(); ?>
+
+</main>
+
+
+</div>
+
+<?php get_template_part( 'drawer', 'menu' ); //display drawer menu?>
 
 <?php get_footer(); ?>

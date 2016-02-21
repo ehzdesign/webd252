@@ -5,7 +5,7 @@ Description: a wordpress theme for Content Management Systems Course Code WEBD 2
 Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: black, white, light, one-column, two-columns, left-sidebar, flexible-width,    featured-images
+Tags: black, white, grey, light, one-column, two-columns, right-sidebar, flexible-width,    featured-images
 Text Domain: webd252
 
 This theme, like WordPress, is licensed under the GPL.
@@ -21,7 +21,7 @@ Use it to make something cool, have fun, and share what you've learned with othe
 .aligncenter,
 div.aligncenter {
   display: block;
-  margin: 5px auto 5px auto;
+  margin: 3em auto;
 }
 
 .alignright {
@@ -91,6 +91,11 @@ a img.aligncenter {
 }
 
 
+.header--fullpage .current-menu-item a,
+.header--fullpage .current-post-ancestor a{
+  border-bottom: 1px solid rgba(33,195,243,.9);
+}
+
 /**
  *
  * @1.Base  styles
@@ -106,11 +111,10 @@ a img.aligncenter {
 
 
 body{
-  color: rgba(0,0,0,0.8);
+  color: #4C4C4C;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   font-family: 'Hind', sans-serif;
-  /*letter-spacing: .1rem;*/
 }
 
 h2{
@@ -120,7 +124,7 @@ h2{
 }
 
 h2 a{
-  color: rgba(0,0,0,0.8);
+  color: #4C4C4C;
   text-decoration: none;
 }
 
@@ -133,6 +137,11 @@ blockquote {
   border-left: 4px solid #D8D8D8;
   padding-left: 1.5em;
   font-style: italic;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
 }
 
 /**
@@ -247,7 +256,7 @@ blockquote {
   background: #fff;
   float: right;
   min-height: 100vh;
-  padding: 5em 7% 5em 5%;
+  padding: 2em 7% 5em 5%;
 
 }
 
@@ -326,7 +335,7 @@ blockquote {
   display: flex;
   -ms-flex-item-align: end;
   -webkit-align-self: end;
-          align-self: end;
+  align-self: end;
   margin-top: auto;
   -webkit-align-items: center;
   -ms-flex-align: center;
@@ -352,7 +361,7 @@ blockquote {
   font-size: 0.3em;
   -ms-flex-item-align: end;
   -webkit-align-self: flex-end;
-          align-self: flex-end;
+  align-self: flex-end;
 }
 
 
@@ -386,11 +395,10 @@ blockquote {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url('http://localhost:8888/webd252/wp-content/themes/WEBD252/images/profile.jpg');
   position: relative;
   -ms-flex-negative: 0;
   -webkit-flex-shrink: 0;
-          flex-shrink: 0;
+  flex-shrink: 0;
 
 }
 
@@ -470,6 +478,8 @@ blockquote {
 }
 
 .meta-pill{
+  -ms-flex-item-align: start;
+  -webkit-align-self: flex-start;
   align-self: flex-start;
 }
 
@@ -493,7 +503,7 @@ blockquote {
 
 .l-post-link-wrapper{
   text-decoration: none;
-  color: rgba(0,0,0,0.8);
+  color: #4C4C4C;
 }
 
 .c-post{
@@ -550,6 +560,8 @@ blockquote {
 }
 
 .post--archive .l-custom-meta-container{
+ -webkit-flex-direction: column;
+ -ms-flex-direction: column;
  flex-direction: column;
 }
 
@@ -565,10 +577,14 @@ blockquote {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  height: 80vh;
+  height: 90vh;
   position: relative;
   overflow: hidden;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
@@ -579,9 +595,18 @@ blockquote {
  min-height: 100vh;
 }
 
+.main-content--single.offset-header{
+ position: relative;
+ top: 60px;
+}
+
 .l-main-content__wrapper--single{
-  padding: 5em 14%;
+  padding: 2em 14%;
+  -ms-flex-preferred-size: 100%;
+  -webkit-flex-basis: 100%;
   flex-basis: 100%;
+  -ms-flex-negative: 1;
+  -webkit-flex-shrink: 1;
   flex-shrink: 1;
 }
 
@@ -592,6 +617,8 @@ blockquote {
 .post-title--large{
   color: #fff;
   z-index: 100;
+  -ms-flex-item-align: center;
+  -webkit-align-self: center;
   align-self: center;
   font-size: 5em;
   letter-spacing: .1em;
@@ -606,11 +633,12 @@ blockquote {
  .sidebar{
   -ms-flex-preferred-size: 350px;
   -webkit-flex-basis: 350px;
-          flex-basis: 350px;
+  flex-basis: 350px;
+  min-width: 350px;
   min-height: 100%;
   -ms-flex-negative: 0;
   -webkit-flex-shrink: 0;
-          flex-shrink: 0;
+  flex-shrink: 0;
   background-color: #fafafa;
   position: relative;
   padding: 2%;
@@ -663,7 +691,7 @@ blockquote {
  *
  */
 
-.widget_recent_entries ul{
+ .widget_recent_entries ul{
   list-style-type: none;
 }
 
@@ -708,7 +736,7 @@ blockquote {
   width: 300px;
   background-color: #3F3F3F;
   top: 0;
-  padding: 3em 0;
+  padding: 1em 0;
 }
 
 .l-page-wrapper,
@@ -723,6 +751,7 @@ blockquote {
   top: 10px;
   color: white;
   font-size: 2em;
+  cursor: pointer;
   /*left: -1.2em;*/
 }
 
@@ -749,13 +778,15 @@ blockquote {
   transition: all .2s ease;
 }
 
+
+
 .nav-menu li:first-child:hover{
-  background-color: #FA7070;
+  background-color: #FE918C;
 }
 
 
 .nav-menu li:nth-child(2n):hover{
-  background-color: #5D9FDE;
+  background-color: #86D6DF;
 }
 
 .nav-menu li:hover a{
@@ -835,12 +866,12 @@ blockquote {
   display: -ms-flexbox;
   display: flex;
   -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   top: 0;
   -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   transition: top 0.2s ease-in-out;
 
 }
@@ -850,12 +881,12 @@ blockquote {
   font-size: 1.5rem;
   color: #353535;
   text-decoration: none;
+  -ms-flex-preferred-size: 10em;
   -webkit-flex-basis: 10em;
-      -ms-flex-preferred-size: 10em;
-          flex-basis: 10em;
+  flex-basis: 10em;
+  -ms-flex-negative: 0;
   -webkit-flex-shrink: 0;
-      -ms-flex-negative: 0;
-          flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .header--fullpage .logo:hover::before,
@@ -924,15 +955,15 @@ blockquote {
 .nav--header{
   margin-left: auto;
   margin-right: 1%;
+  -ms-flex-preferred-size: 100%;
   -webkit-flex-basis: 100%;
-      -ms-flex-preferred-size: 100%;
-          flex-basis: 100%;
+  flex-basis: 100%;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-align-items:center;
-      -ms-flex-align:center;
-          align-items:center;
+  -ms-flex-align:center;
+  align-items:center;
 }
 
 
@@ -968,9 +999,12 @@ blockquote {
 }
 
 .search-form{
+
+  -ms-flex-negative: 0;
+
   -webkit-flex-shrink: 0;
-      -ms-flex-negative: 0;
-          flex-shrink: 0;
+
+  flex-shrink: 0;
 }
 
 
@@ -984,8 +1018,8 @@ blockquote {
   display: -ms-flexbox;
   display: flex;
   -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 
   margin-top: 10em;
 }
@@ -1013,9 +1047,9 @@ blockquote {
 }
 
 .post-direction {
-    display: block;
-    color: #666666;
-    font-size: .8em;
+  display: block;
+  color: #666666;
+  font-size: .8em;
 }
 
 /**
@@ -1024,19 +1058,19 @@ blockquote {
  *
  */
 
-.post--archive {
-    background-size: 100%;
-    background-repeat: no-repeat;
-    position: relative;
-    background-position: center;
-    padding: 1em 5%;
-    margin-bottom: 2em;
-    cursor: pointer;
-    transition: background-size 1s ease;
+ .post--archive {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  background-position: center;
+  padding: 1em 5%;
+  margin-bottom: 2em;
+  cursor: pointer;
+  transition: background-size 1s ease;
 }
 
 .post--archive:hover {
-    background-size: 110%;
+  background-size: 110%;
 }
 
 
@@ -1050,22 +1084,22 @@ blockquote {
 .l-main-content__wrapper--archive .post-meta,
 .l-main-content__wrapper--archive .post-meta__author,
 .l-main-content__wrapper--archive .post-meta span:nth-child(3)::before {
-    content: '';
-    color: #fff;
+  content: '';
+  color: #fff;
 }
 
 .post--archive .meta-tags--overlay {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 
 .post--archive .post-meta.u-text-overlay {
-    font-size: 1em;
-    margin-bottom: 1em;
+  font-size: 1em;
+  margin-bottom: 1em;
 }
 
 .post--archive .o-overlay--single {
-    background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.7);
 }
 
 

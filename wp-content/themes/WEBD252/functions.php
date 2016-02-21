@@ -1,5 +1,6 @@
 <?php
-    //add featured image to posts
+
+  //add featured image support to posts
 add_theme_support( 'post-thumbnails' );
 
 function webd252_theme_styles() {
@@ -8,7 +9,7 @@ function webd252_theme_styles() {
   wp_enqueue_style('font_awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
   wp_enqueue_style( 'google_font', 'https://fonts.googleapis.com/css?family=Montserrat|Hind');
   wp_enqueue_style( 'normalize', 'https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css');
-      // wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css');
+  wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css');
 
 
 }
@@ -18,8 +19,8 @@ function webd252_theme_scripts() {
     wp_enqueue_script( 'headerScroll' );
 }
 
-add_action( 'wp_enqueue_scripts', 'webd252_theme_styles');
-add_action( 'wp_enqueue_scripts', 'webd252_theme_scripts');
+add_action( 'wp_enqueue_scripts', 'webd252_theme_styles'); //add stylesheets to head
+add_action( 'wp_enqueue_scripts', 'webd252_theme_scripts'); //add scripts to footer
 
     // Register Sidebars
 function custom_sidebar() {

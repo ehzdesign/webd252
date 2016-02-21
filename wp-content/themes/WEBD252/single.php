@@ -1,10 +1,9 @@
-  <?php get_header(); ?>
+  <?php get_header(); // dipslay header?>
 
 
   <div class="l-page-wrapper">
 
-    <?php get_template_part( 'full-width', 'nav' ); ?>
-
+    <?php get_template_part( 'full-width', 'nav' ); //display the full width nav?>
 
 
     <?php if ( has_post_thumbnail() ) : ?>
@@ -23,23 +22,20 @@
 
       <?php else:
 
+      //if no featured image is found display the image with matching filename from inages folder
       $result = get_the_category();
 
       $post_category = $result[0]->category_nicename;
 
       ?>
 
-      <div class="c-banner-image" style="background-image: url(<?php echo get_template_directory_uri() . '/images/category/'. $post_category .'.jpeg'; ?>)">
 
+      <div class="c-banner-image" style="background-image: url(<?php echo get_template_directory_uri() . '/images/category/'. $post_category .'.jpeg'; ?>)">
 
 
         <div class="o-overlay o-overlay--single"></div>
 
-
-
-
       <?php endif; ?>
-
 
     </div>
 
@@ -48,9 +44,10 @@
       <section class="l-main-content__wrapper l-main-content__wrapper--single">
 
 
+
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-         <div class="post">
+         <article class="post">
 
           <h1 class="u-capitalize  u-heading--large"><?php the_title(); ?></h1>
 
@@ -62,23 +59,23 @@
           <?php get_template_part( 'assignment', 'attrs' ); ?>
 
           <div class="next-post-container">
-          <?php previous_post_link('<div class="next-post-link--large"><span class="post-direction">< prev post</span>%link</div>'); ?>
+            <?php previous_post_link('<div class="next-post-link--large"><span class="post-direction">< prev post</span>%link</div>'); ?>
 
-           <?php next_post_link('<div class="next-post-link--large"><span class="post-direction">next post ></span>%link</div>'); ?>
+            <?php next_post_link('<div class="next-post-link--large"><span class="post-direction">next post ></span>%link</div>'); ?>
 
-         </div>
+          </div>
 
 
-         <div class="comment list">
-          <?php wp_list_comments( array( 'style' => 'div' ) ); ?>
-        </div>
+          <div class="comment list">
+            <?php wp_list_comments( array( 'style' => 'div' ) ); ?>
+          </div>
 
-      </div>
+        </article>
 
-    <?php endwhile;?>
-  <?php endif;?>
-</section>
-<?php get_sidebar(); ?>
+      <?php endwhile;?>
+    <?php endif;?>
+  </section>
+  <?php get_sidebar(); ?>
 
 </main>
 </div>
